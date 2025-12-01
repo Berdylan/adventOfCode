@@ -17,23 +17,25 @@ int main(int argc, char** argv) {
   }
 
   while (input >> direction >> distance) {
+    password += distance / 100;
+    int remainder = distance % 100;
+
     if (direction == 'R') {
-      while (distance) {
+      while (remainder) {
         currentPosition = (currentPosition + 1) % 100;
         if (currentPosition == 0) {
           password++;
         }
-        distance--;
+        remainder--;
       }
     } else if (direction == 'L') {
-      while (distance) {
+      while (remainder) {
         currentPosition = (currentPosition - 1 + 100) % 100;
         if (currentPosition == 0) {
           password++;
         }
-        distance--;
+        remainder--;
       }
-      currentPosition = (currentPosition - distance + 100) % 100;
     }
     // std::cout << "Current Position: " << currentPosition << std::endl;
   }
